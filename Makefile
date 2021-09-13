@@ -84,6 +84,10 @@ deploy: kustomize ## Deploy controller to the K8s cluster specified in ~/.kube/c
 undeploy: ## Undeploy controller from the K8s cluster specified in ~/.kube/config.
 	$(KUSTOMIZE) build config/default | kubectl delete -f - --ignore-not-found=true
 
+sample:
+	kubectl apply -f config/samples/demo_v1alpha1_nginx.yaml
+
+
 OS := $(shell uname -s | tr '[:upper:]' '[:lower:]')
 ARCH := $(shell uname -m | sed 's/x86_64/amd64/')
 
